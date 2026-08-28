@@ -23,7 +23,14 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState); 
+        // Check and request camera permission automatically on launch
+if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+    if (checkSelfPermission(android.Manifest.permission.CAMERA) != android.content.pm.PackageManager.PERMISSION_GRANTED) {
+        requestPermissions(new String[]{android.Manifest.permission.CAMERA}, 100);
+    }
+}
+
         setContentView(R.layout.activity_main);
 
         webview =(WebView)findViewById(R.id.webView);
